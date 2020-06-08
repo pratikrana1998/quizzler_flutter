@@ -1,6 +1,9 @@
 import 'question.dart';
 
 class QuizBrain {
+
+  int _qNum = 0;
+
   List<Question> _qBank = [
     Question(q: 'Some cats are actually allergic to humans', a: true),
     Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
@@ -17,12 +20,32 @@ class QuizBrain {
     Question(q: 'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.', a: true),
   ];
 
-  String getQText(int qNum) {
-    return _qBank[qNum].qText;
+  void nextQuestion() {
+    if(_qNum < _qBank.length-1) {
+      _qNum++;
+    }
   }
 
-  bool getQAns(int qNum) {
-    return _qBank[qNum].qAns;
+  String getQText() {
+    return _qBank[_qNum].qText;
+  }
+
+  bool getQAns() {
+    return _qBank[_qNum].qAns;
+  }
+
+  bool isFinished() {
+    if(_qNum == _qBank.length-1) {
+      print('--reached end of quiz');
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  void reset() {
+    _qNum = 0;
   }
 }
 
